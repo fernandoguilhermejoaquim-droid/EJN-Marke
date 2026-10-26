@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-AO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="EJN Market — compra e venda de produtos no Cuanza Sul e em toda Angola.">
+<title>EJN MARKET | Compra e venda em Angola</title>
+<style>
+:root{--navy:#0a1931;--gold:#d4af37;--cream:#f7f8fb;--ink:#172033;--muted:#647084;--line:#e3e7ef;--green:#16834a}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--cream);color:var(--ink)}
+header{background:var(--navy);color:white;position:sticky;top:0;z-index:5;box-shadow:0 3px 16px #0a193122}
+.nav{max-width:1120px;margin:auto;padding:14px 18px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.logo{font-weight:900;font-size:1.35rem;letter-spacing:.4px}.logo span{color:var(--gold)}
+nav{display:flex;gap:14px;align-items:center;flex-wrap:wrap}nav a{color:#fff;text-decoration:none;font-size:.94rem}
+button,.button{border:0;border-radius:10px;padding:11px 15px;font-weight:750;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.gold{background:var(--gold);color:#171717}.dark{background:var(--navy);color:white}.outline{border:1px solid var(--line);background:white;color:var(--ink)}
+.hero{background:linear-gradient(125deg,#0a1931,#16345c);color:white;padding:52px 18px}
+.hero-inner{max-width:1120px;margin:auto;display:grid;grid-template-columns:1.3fr .7fr;gap:24px;align-items:center}
+.eyebrow{color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:1.5px;font-size:.8rem}
+h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;margin:12px 0}
+.hero p{color:#e2e8f2;line-height:1.7;max-width:650px}.hero-card{background:#ffffff12;border:1px solid #ffffff2a;padding:22px;border-radius:18px}
+.hero-card strong{display:block;font-size:1.2rem;margin-bottom:8px}.hero-card p{font-size:.93rem}
+main{max-width:1120px;margin:28px auto;padding:0 18px 50px}
+.section-head{display:flex;justify-content:space-between;gap:14px;align-items:end;flex-wrap:wrap;margin:28px 0 16px}
+h2{margin:0;font-size:1.55rem}.muted{color:var(--muted)}
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;margin-bottom:18px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #d9deea;border-radius:10px;background:white;font:inherit;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:2px solid #d4af3780;border-color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{background:white;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 4px 14px #0a19310a;display:flex;flex-direction:column}
+.photo{height:175px;background:linear-gradient(135deg,#edf0f5,#dce2ec);display:flex;align-items:center;justify-content:center;color:#738096;font-size:3rem;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}.card-body{padding:15px;display:flex;flex-direction:column;gap:8px;flex:1}
+.tag{display:inline-flex;background:#f4edcf;color:#594712;border-radius:20px;padding:4px 9px;font-size:.76rem;font-weight:750;align-self:flex-start}
+.price{color:#9a7610;font-size:1.25rem;font-weight:900}.location{color:var(--muted);font-size:.84rem}
+.card-actions{display:flex;gap:8px;margin-top:auto;padding-top:7px}.card-actions button{flex:1;font-size:.84rem;padding:10px 8px}
+.empty{grid-column:1/-1;text-align:center;padding:40px 12px;color:var(--muted);background:white;border:1px dashed #ccd3df;border-radius:14px}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.info{background:white;border:1px solid var(--line);border-radius:14px;padding:18px}.info b{display:block;margin:8px 0}
+footer{background:var(--navy);color:#dce3ee;padding:26px 18px;text-align:center;font-size:.9rem}
+.modal{position:fixed;inset:0;background:#07101dcc;display:none;align-items:center;justify-content:center;padding:16px;z-index:10;overflow:auto}.modal.open{display:flex}
+.dialog{width:min(600px,100%);background:white;border-radius:18px;padding:22px;max-height:95vh;overflow:auto}
+.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}.dialog h2{font-size:1.3rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field{display:flex;flex-direction:column;gap:6px;font-size:.88rem;font-weight:700}.field.full{grid-column:1/-1}
+.note{background:#fff8df;border:1px solid #f0df9a;border-radius:10px;padding:11px;font-size:.83rem;line-height:1.5;color:#584817}
+.close{background:#f0f2f6;color:#222;padding:8px 12px}
+@media(max-width:760px){.hero-inner{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{grid-template-columns:1fr 1fr}.filters input{grid-column:1/-1}.info-grid{grid-template-columns:1fr}.nav{align-items:flex-start}nav{width:100%}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.hero{padding:36px 18px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.logo{font-size:1.15rem}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+<a class="logo" href="#" style="color:white;text-decoration:none"><span>EJN</span> MARKET</a>
+<nav><a href="#produtos">Produtos</a><a href="#como-funciona">Como funciona</a><a href="#contacto">Contacto</a><button class="gold" id="openSellTop">＋ Publicar anúncio</button></nav>
+</div></header>
+<section class="hero"><div class="hero-inner">
+<div><div class="eyebrow">Marketplace de Angola</div><h1>Compra e vende.<br><span style="color:var(--gold)">Mais perto de ti.</span></h1>
+<p>Descobre telefones, carros, motas, casas, peças auto, eletrónica e muito mais. Começamos no Cuanza Sul e queremos ligar compradores e vendedores de toda Angola.</p>
+<button class="gold" id="openSellHero">Publicar um anúncio grátis →</button></div>
+<div class="hero-card"><strong>🇦🇴 EJN MARKET</strong><p>Sumbe · Porto Amboim · Gabela · Toda Angola</p><p>Encontra oportunidades perto de ti e combina os detalhes diretamente com o vendedor.</p><a class="button outline" href="#produtos">Explorar produtos ↓</a></div>
+</div></section>
+<main>
+<section id="produtos">
+<div class="section-head"><div><div class="eyebrow">O que procuras?</div><h2>Produtos em destaque</h2></div><span id="count" class="muted"></span></div>
+<div class="filters">
+<input id="search" type="search" placeholder="🔎 Pesquisar produto ou município…">
+<select id="province"><option value="">Todas as províncias</option></select>
+<select id="category"><option value="">Todas as categorias</option><option>Telefones</option><option>Carros</option><option>Motos</option><option>Casas</option><option>Peças Auto Elétrica</option><option>Eletrónica</option><option>Outros Produtos</option></select>
+</div>
+<div id="products" class="grid"></div>
+<p class="muted" style="font-size:.82rem;margin-top:14px">Os anúncios de exemplo servem apenas para demonstrar o funcionamento do site.</p>
+</section>
+<section id="como-funciona" style="margin-top:46px">
+<div class="eyebrow">Simples e direto</div><h2>Como funciona</h2>
+<div class="info-grid">
+<div class="info"><span style="font-size:1.7rem">🔍</span><b>1. Encontra</b><span class="muted">Pesquisa por produto, categoria ou localização.</span></div>
+<div class="info"><span style="font-size:1.7rem">📣</span><b>2. Publica</b><span class="muted">Prepara o anúncio com preço, descrição e fotografia.</span></div>
+<div class="info"><span style="font-size:1.7rem">🤝</span><b>3. Combina</b><span class="muted">Fala com o vendedor, confirma o produto e combina a entrega em segurança.</span></div>
+</div>
+</section>
+<section id="contacto" style="margin-top:42px;background:white;border:1px solid var(--line);border-radius:16px;padding:22px">
+<div class="eyebrow">Estamos aqui para ajudar</div><h2>Contacto</h2><p class="muted">Tens dúvidas sobre um anúncio? Contacta a equipa EJN MARKET pelo WhatsApp.</p>
+<a class="button" style="background:#16834a;color:white" href="https://wa.me/244972942901" target="_blank" rel="noopener noreferrer">Contactar pelo WhatsApp</a>
+</section>
+</main>
+<footer>© <span id="year"></span> EJN MARKET · Cuanza Sul, Angola<br><span style="font-size:.78rem">Confirma sempre o produto e o vendedor antes de efetuar qualquer pagamento.</span></footer>
+
+<div class="modal" id="sellModal" role="dialog" aria-modal="true" aria-labelledby="sellTitle">
+<div class="dialog"><div class="dialog-head"><h2 id="sellTitle">Publicar anúncio</h2><button class="close" id="closeSell" aria-label="Fechar">✕</button></div>
+<div class="note" style="margin-bottom:14px">Esta versão é uma demonstração: os anúncios são guardados apenas neste navegador e não ficam visíveis para outros visitantes. Para publicar anúncios partilhados, será necessário ligar uma base de dados e um serviço seguro de utilizadores.</div>
+<form id="sellForm"><div class="form-grid">
+<label class="field full">Título do anúncio *<input id="title" required maxlength="90" placeholder="Ex.: Telefone Android em bom estado"></label>
+<label class="field">Categoria *<select id="cat" required><option>Telefones</option><option>Carros</option><option>Motos</option><option>Casas</option><option>Peças Auto Elétrica</option><option>Eletrónica</option><option>Outros Produtos</option></select></label>
+<label class="field">Preço (Kz) *<input id="price" type="number" min="1" step="1" required placeholder="Ex.: 450000"></label>
+<label class="field">Província *<select id="prov" required></select></label>
+<label class="field">Município *<input id="mun" required maxlength="60" placeholder="Ex.: Sumbe"></label>
+<label class="field full">Descrição *<textarea id="desc" rows="3" required maxlength="1200" placeholder="Descreve o estado e os detalhes do produto"></textarea></label>
+<label class="field full">Fotografia (opcional)<input id="photo" type="file" accept="image/jpeg,image/png,image/webp"></label>
+<label class="field full">Contacto WhatsApp do vendedor (opcional)<input id="sellerPhone" inputmode="tel" placeholder="Ex.: 923000000"></label>
+</div><button class="dark" style="width:100%;margin-top:16px" type="submit">Guardar anúncio de demonstração</button></form>
+</div></div>
+<script>
+const provinces=["Bengo","Benguela","Bié","Cabinda","Cuando","Cubango","Cuanza-Norte","Cuanza-Sul","Cunene","Huambo","Huíla","Icolo e Bengo","Luanda","Lunda-Norte","Lunda-Sul","Malanje","Moxico","Moxico Leste","Namibe","Uíge","Zaire"];
+const samples=[
+{id:"demo1",title:"iPhone 13 — 128 GB",cat:"Telefones",price:450000,prov:"Cuanza-Sul",mun:"Sumbe",desc:"Anúncio de demonstração. Confirma sempre o estado e os acessórios com o vendedor.",emoji:"📱"},
+{id:"demo2",title:"Toyota Corolla — 2015",cat:"Carros",price:5500000,prov:"Cuanza-Sul",mun:"Porto Amboim",desc:"Anúncio de demonstração. Verifica a documentação e inspeciona o veículo antes da compra.",emoji:"🚗"},
+{id:"demo3",title:"Gerador — 5 KVA",cat:"Outros Produtos",price:350000,prov:"Cuanza-Sul",mun:"Sumbe",desc:"Anúncio de demonstração. Pede informações adicionais ao vendedor.",emoji:"⚡"},
+{id:"demo4",title:"Sacos de cimento",cat:"Outros Produtos",price:6500,prov:"Cuanza-Sul",mun:"Gabela",desc:"Anúncio de demonstração. Confirma a quantidade e o preço antes de comprar.",emoji:"🧱"},
+{id:"demo5",title:"Motorizada usada",cat:"Motos",price:380000,prov:"Luanda",mun:"Luanda",desc:"Anúncio de demonstração. Confirma o estado e os documentos da motorizada.",emoji:"🏍️"},
+{id:"demo6",title:"Televisor LED",cat:"Eletrónica",price:180000,prov:"Benguela",mun:"Benguela",desc:"Anúncio de demonstração. Testa o equipamento antes de efetuar o pagamento.",emoji:"📺"}
+];
+let listings=[];
+try{listings=JSON.parse(localStorage.getItem("ejn_demo_listings")||"[]");if(!Array.isArray(listings))listings=[];}catch(e){listings=[]}
+const $=id=>document.getElementById(id);
+provinces.forEach(p=>{ $("province").add(new Option(p,p)); $("prov").add(new Option(p,p,p==="Cuanza-Sul",p==="Cuanza-Sul")); });
+$("year").textContent=new Date().getFullYear();
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function money(n){return Number(n).toLocaleString("pt-AO")+" Kz";}
+function render(){
+ const q=$("search").value.trim().toLocaleLowerCase("pt-AO"),prov=$("province").value,cat=$("category").value;
+ const all=[...listings,...samples].filter(p=>(!q||[p.title,p.desc,p.mun,p.prov,p.cat].join(" ").toLocaleLowerCase("pt-AO").includes(q))&&(!prov||p.prov===prov)&&(!cat||p.cat===cat));
+ $("count").textContent=all.length+" anúncio(s)";
+ $("products").innerHTML=all.length?all.map(p=>`<article class="card"><div class="photo">${p.photo?`<img src="${p.photo}" alt="${esc(p.title)}">`:`<span aria-hidden="true">${esc(p.emoji||"🛍️")}</span>`}</div><div class="card-body"><span class="tag">${esc(p.cat)}</span><strong>${esc(p.title)}</strong><div class="price">${money(p.price)}</div><div class="location">📍 ${esc(p.mun)}, ${esc(p.prov)}</div><p class="muted" style="font-size:.88rem;line-height:1.5">${esc(p.desc)}</p><div class="card-actions"><button class="dark" onclick="details('${esc(p.id)}')">Ver detalhes</button>${p.phone?`<button class="gold" onclick="contactSeller('${esc(p.phone)}','${esc(p.title)}')">Contactar</button>`:""}</div></div></article>`).join(""):'<div class="empty">Não encontrámos produtos com esses filtros. Tenta outra pesquisa.</div>';
+}
+function details(id){const p=[...listings,...samples].find(x=>x.id===id);if(!p)return;alert(`${p.title}\n${money(p.price)}\n${p.mun}, ${p.prov}\n\n${p.desc}\n\n${p.id.startsWith("demo")?"Este é um anúncio de demonstração.":"Anúncio guardado apenas neste navegador."}`);}
+function contactSeller(phone,title){const digits=String(phone).replace(/\D/g,"");if(!digits){alert("O vendedor não indicou um contacto válido.");return;}window.open("https://wa.me/244"+digits.replace(/^244/,"")+"?text="+encodeURIComponent("Olá! Tenho interesse no anúncio: "+title)," _blank","noopener");}
+function openModal(){$("sellModal").classList.add("open");}
+function closeModal(){$("sellModal").classList.remove("open");}
+$("openSellTop").onclick=openModal;$("openSellHero").onclick=openModal;$("closeSell").onclick=closeModal;
+$("sellModal").addEventListener("click",e=>{if(e.target===$("sellModal"))closeModal()});
+["search","province","category"].forEach(id=>$(id).addEventListener(id==="search"?"input":"change",render));
+$("sellForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const file=$("photo").files[0];
+ if(file&&file.size>2*1024*1024){alert("A fotografia deve ter no máximo 2 MB.");return;}
+ const save=photo=>{const p={id:"local"+Date.now(),title:$("title").value.trim(),cat:$("cat").value,price:Number($("price").value),prov:$("prov").value,mun:$("mun").value.trim(),desc:$("desc").value.trim(),phone:$("sellerPhone").value.trim(),photo:photo||"",emoji:"🛍️"};if(!p.title||!p.price||p.price<1||!p.mun||!p.desc){alert("Confirma os campos obrigatórios.");return;}listings.unshift(p);try{localStorage.setItem("ejn_demo_listings",JSON.stringify(listings));}catch(err){listings.shift();alert("Não foi possível guardar. Experimenta uma fotografia menor.");return;}render();$("sellForm").reset();closeModal();$("products").scrollIntoView({behavior:"smooth"});alert("Anúncio guardado neste navegador. Para ficar visível a todos, é preciso configurar o serviço online.");};
+ if(file){if(!/^image\/(jpeg|png|webp)$/.test(file.type)){alert("Usa uma imagem JPG, PNG ou WebP.");return;}const r=new FileReader();r.onload=()=>save(r.result);r.onerror=()=>alert("Não foi possível ler a fotografia.");r.readAsDataURL(file);}else save("");
+});
+render();
+</script>
+</body>
+</html>
